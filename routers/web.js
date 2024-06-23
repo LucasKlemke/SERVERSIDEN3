@@ -1,11 +1,15 @@
 import express from 'express';
-import {pegarViewDeTodosOsPetsDoBancoDeDadosMySQLCriadoParaAN3DeServerSideComOProfessorCamargoReiDoJajava, getPetTutor,getPetAltura,addTutor,addPet, deletePet, deleteTutor, updateTutor, updatePet} from '../controller/controller.js';
+import {pegarViewDeTodosOsPetsDoBancoDeDadosMySQLCriadoParaAN3DeServerSideComOProfessorCamargoReiDoJajava, getPetTutor,getPetAltura,addTutor,addPet, deletePet, deleteTutor, updateTutor, updatePet, getPet, getTutorEP, getAlturaEP} from '../controller/controller.js';
 
 const { Router } = express;
 
 const router = Router();
 
 //view detalhada de tudo
+router.get('/pet', getPet)
+router.get('/tutor', getTutorEP)
+router.get('/altura',getAlturaEP)
+
 router.get(`/pets`, pegarViewDeTodosOsPetsDoBancoDeDadosMySQLCriadoParaAN3DeServerSideComOProfessorCamargoReiDoJajava)
 
 //pegar os pets pelo email do tutor

@@ -15,6 +15,9 @@ import {
   excluirPetTutor,
   attPet,
   attTutor,
+  getPets,
+  getTutor,
+  getAltura,
 } from "./queries.js";
 
 //view geral
@@ -39,6 +42,48 @@ export const getPetTutor = (req, res) => {
     const { tutor } = req.params;
 
     db.query(getPetByTutor, [`${tutor}%`], (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(200).json(results);
+    });
+  } catch (error) {
+    console.error("Erro na consulta ao banco de dados:", error);
+    res.status(500).json({ error: "Erro interno no servidor" });
+  }
+};
+
+export const getPet = (req, res) => {
+  try {
+    db.query(getPets, (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(200).json(results);
+    });
+  } catch (error) {
+    console.error("Erro na consulta ao banco de dados:", error);
+    res.status(500).json({ error: "Erro interno no servidor" });
+  }
+};
+
+export const getTutorEP = (req, res) => {
+  try {
+    db.query(getTutor, (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(200).json(results);
+    });
+  } catch (error) {
+    console.error("Erro na consulta ao banco de dados:", error);
+    res.status(500).json({ error: "Erro interno no servidor" });
+  }
+};
+
+export const getAlturaEP = (req, res) => {
+  try {
+    db.query(getAltura, (error, results) => {
       if (error) {
         throw error;
       }

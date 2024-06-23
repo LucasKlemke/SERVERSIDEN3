@@ -1,8 +1,14 @@
 export let itGo = "select * from pet_altura_tutor_view;";
 
+
+
 export const getPetByTutor = `SELECT p.nome, t.email from tutor t inner join pet p on t.id = p.tutor where t.email like ?; `;
 export const getPetByAltura = `SELECT p.nome, a.altura from altura_pet a inner join pet p on a.pet = p.id where a.altura like ?; 
 `;
+
+export const getPets = "SELECT * FROM pet"
+export const getAltura = `SELECT * FROM altura_pet`
+export const getTutor = `SELECT * FROM tutor`
 
 export const deleteTask = "DELETE FROM tasks WHERE taskid = $1";
 
