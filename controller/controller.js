@@ -21,20 +21,19 @@ import {
 } from "./queries.js";
 
 //view geral
-export const pegarViewDeTodosOsPetsDoBancoDeDadosMySQLCriadoParaAN3DeServerSideComOProfessorCamargoReiDoJajava =
-  (req, res) => {
-    try {
-      db.query(itGo, (error, results) => {
-        if (error) {
-          throw error;
-        }
-        res.status(200).json(results);
-      });
-    } catch (error) {
-      console.error("Erro na consulta ao banco de dados:", error);
-      res.status(500).json({ error: "Erro interno no servidor" });
-    }
-  };
+export const pegarView = (req, res) => {
+  try {
+    db.query(itGo, (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(200).json(results);
+    });
+  } catch (error) {
+    console.error("Erro na consulta ao banco de dados:", error);
+    res.status(500).json({ error: "Erro interno no servidor" });
+  }
+};
 
 //pegar pets por tutor
 export const getPetTutor = (req, res) => {
