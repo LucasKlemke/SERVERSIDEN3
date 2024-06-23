@@ -10,21 +10,21 @@ import 'dotenv/config'
 //   password: process.env.PASSWORD,
 // };
 
-// const dbConfig = {
-//   //localhost
-//   host: process.env.HOST,
-//   database: process.env.DATABASE,
-//   //root
-//   user: process.env.USER_DB
-// };
-
 const dbConfig = {
   //localhost
-  host: 'localhost',
-  database: 'n3ss',
+  host: process.env.HOST,
+  database: process.env.DATABASE,
   //root
-  user: 'root'
+  user: process.env.USER_DB
 };
+
+// const dbConfig = {
+//   //localhost
+//   host: 'localhost',
+//   database: 'n3ss',
+//   //root
+//   user: 'root'
+// };
 
 const db = mysql.createConnection(dbConfig);
 
