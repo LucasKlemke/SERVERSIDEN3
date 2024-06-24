@@ -1,4 +1,6 @@
 import db from "../config/db.js";
+import jwt from "jsonwebtoken";
+import "dotenv/config";
 import {
   getPetByTutor,
   itGo,
@@ -19,6 +21,32 @@ import {
   getTutor,
   getAltura,
 } from "./queries.js";
+
+export const verifyJWT = (req, res, next) => {
+  const token = req.headers["auth"];
+  if (!token)
+    return res.status(401).json({ auth: false, message: "Insira o token" });
+
+  jwt.verify(token, process.env.KEY, function (err, decoded) {
+    if (err)
+      return res.status(500).json({ auth: false, message: "Acesso Negado" });
+
+    req.userId = decoded.id;
+    next();
+  });
+};
+
+export const login = (req, res, next) => {
+  const { user, password } = req.body;
+  if (user === "admin" && password == "senha") {
+    const id = 1;
+    const token = jwt.sign({ id }, process.env.KEY, {
+      expiresIn: 300,
+    });
+    return res.json({ auth: true, token: token });
+  }
+  res.status(500).json({ message: " Login Inválido!" });
+};
 
 //view geral
 export const pegarView = (req, res) => {
