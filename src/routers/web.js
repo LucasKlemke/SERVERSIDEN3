@@ -37,11 +37,12 @@ const router = Router();
 router.post("/login", login);
 
 //view detalhada de tudo
+router.use(verifyJWT)
 router.get("/pet", getPet);
 router.get("/tutor", getTutorEP);
 router.get("/altura", getAlturaEP);
 
-router.get(`/pets`, verifyJWT, pegarView);
+router.get(`/pets`, pegarView);
 
 //pegar os pets pelo email do tutor
 router.get("/tutor/:tutor/pet", getPetTutor);
